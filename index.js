@@ -32,11 +32,19 @@ function addTeam() {
                 type: "input",
                 name: "managerPhone",
                 message: (answers) => `${answers.managerName}'s Phone Number:`
+            },
+
+            {
+                type: "list",
+                name: "teamMember",
+                message: `Would you like to add a member to this team?`,
+                choices: ["Add an Engineer", "Add an Intern", "Team is Complete"],
             }
         ])
         .then((answers) =>
-            console.log(`${answers.managerName} | ${answers.managerID} | ${answers.managerEmail} | ${answers.managerPhone}`)
+            console.log(`${answers.managerName} | ${answers.managerID} | ${answers.managerEmail} | ${answers.managerPhone} | ${answers.teamMember}`)
         )
 };
 
+// Initiate the addTeam function to start asking questions
 addTeam();
