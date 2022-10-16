@@ -142,7 +142,7 @@ const internPrompts = [
     {
         type: "input",
         name: "intSchool",
-        message: (answers) => `${answers.intName}'s GitHub Username:`
+        message: (answers) => `${answers.intName}'s School Name:`
     }
 ];
 
@@ -181,7 +181,7 @@ function addMember(answers) {
 
 // Template for HTML Generation
 
-// Create the Manager HTML content based on user input
+// Create the Manager HTML content based on user input using Manager class blueprint
 function createManager() {
     for (const Manager of managerArr) {
         return `
@@ -204,27 +204,60 @@ function createManager() {
     console.log("Generated Manager")
 };
 
-// Create the Engineer HTML content based on user input
-function createTeamMember() {
-    for (const Employee of teamArr) {
-        return `
+// Create the Engineer HTML content based on user input using Engineer class blueprint
+function createEngineer() {
+    console.log("Generated Engineer")
+    return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
                 <div class="card-header">
-                    <h2>${getName(Employee)}</h2>
-                    <h3>${getRole(Employee)}</h3>
+                    <h2>${Engineer.getName()}</h2>
+                    <h3>${Engineer.getRole()}</h3>
                 </div>
             <div class="outerGroup">
                 <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${getId(id)}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${getEmail(email)}">${getEmail(email)}</a></li>
-                    <li class="list-group-item"></li>
+                    <li class="list-group-item">ID: ${Engineer.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${Engineer.getEmail()}">${Engineer.getEmail()}</a></li>
+                    <li class="list-group-item">GitHub Username: <a href="https://github.com/${Engineer.github}">${Engineer.github}</a></li>
                 </ul>
             </div>
         </div>
-        `
+`
+};
+
+// Create the Intern HTML content based on user input using Intern class blueprint
+function createIntern() {
+    console.log("Generated Intern")
+    return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="card teamCard">
+                <div class="card-header">
+                    <h2>${Intern.getName()}</h2>
+                    <h3>${Intern.getRole()}</h3>
+                </div>
+            <div class="outerGroup">
+                <ul class="list-group list-group-flush innerGroup">
+                    <li class="list-group-item">ID: ${Intern.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${Intern.getEmail()}">${Intern.getEmail()}</a></li>
+                    <li class="list-group-item">School Name: ${Intern.getSchool()}</li>
+                </ul>
+            </div>
+        </div>
+`
+};
+
+
+// Create the Engineer HTML content based on user input using Engineer class blueprint
+function createTeamMember() {
+    for (const Employee of teamArr) {
+        if (Employee.getRole() === "Engineer") {
+            console.log(`Generated Engineer`);
+        };
+
+        if (Employee.getRole() === "Intern") {
+            console.log(`Generated Intern`);
+        };
     };
-    console.log(`Generated Team Member`)
 };
 
 function createHTML() {
