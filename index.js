@@ -10,11 +10,13 @@ const createHTML = require('./src/template')
 
 // Arrays for capturing input during inquirer
 var managerArr = [];
-var memberArr = [];
+var teamArr = [];
 
 // Start the app and
 // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
 function startApp() {
+    managerArr = [];
+    teamArr = [];
     inquirer.prompt(managerPrompts)
     .then((answers) => {
         const manager = new Manager(
@@ -41,9 +43,9 @@ function addEngineer() {
             answers.engEmail,
             answers.engGit
         );
-        memberArr.push(engineer);
+        teamArr.push(engineer);
         console.log(engineer);
-        console.log(memberArr);
+        console.log(teamArr);
         askMember(answers);
     });
 }
@@ -58,9 +60,9 @@ function addIntern() {
             answers.intEmail,
             answers.intSchool
         );
-        memberArr.push(intern);
+        teamArr.push(intern);
         console.log(intern);
-        console.log(memberArr);
+        console.log(teamArr);
         askMember(answers);
     });
 }
@@ -157,13 +159,13 @@ const internPrompts = [
 
 
 // Start the team adding process
-function askMember(answers) {
+function askMember() {
     return inquirer
         .prompt([
             {
                 type: "list",
                 name: "teamMember",
-                message: `Would you like to add a member to ${answers.managerName}'s team?`,
+                message: `Would you like to add team member?`,
                 choices: ["Add an Engineer", "Add an Intern", "Team is Complete"],
             }
 
@@ -172,6 +174,7 @@ function askMember(answers) {
             addMember(answers))
 };
 
+// Function to decide which function to go to based on selection
 function addMember(answers) {
     switch (answers.teamMember) {
         case "Add an Engineer":
@@ -185,8 +188,6 @@ function addMember(answers) {
             break;
     };
 };
-
-
 
 
 
