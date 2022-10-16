@@ -17,10 +17,9 @@ function createManager() {
                 <li class="list-group-item">Office number: ${Manager.officeNumber}</li>
             </ul>
         </div>
-    </div>
         `
-    }
-}
+    };
+};
 
 // Create the Engineer HTML content based on user input
 function createEngineer() {
@@ -39,10 +38,9 @@ function createEngineer() {
                 <li class="list-group-item">GitHub Username: ${Engineer.github}</li>
             </ul>
         </div>
-    </div>
         `
-    }
-}
+    };
+};
 
 // Create the Intern HTML content based on user input
 function createIntern() {
@@ -61,10 +59,9 @@ function createIntern() {
                 <li class="list-group-item">School: ${Intern.school}</li>
             </ul>
         </div>
-    </div>
         `
-    }
-}
+    };
+};
 
 function createHTML() {
 
@@ -99,5 +96,3 @@ function createHTML() {
 </html>
 `
 };
-
-module.exports = createHTML, createManager, createEngineer, createIntern
