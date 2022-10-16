@@ -29,7 +29,6 @@ function startApp() {
             answers.managerPhone
         );
         managerArr.push(manager);
-        createManager();
         askMember(answers);
     });
 }
@@ -46,7 +45,6 @@ function addEngineer() {
             answers.engGit
         );
         teamArr.push(engineer);
-        createEngineer();
         askMember(answers);
     });
 }
@@ -62,7 +60,6 @@ function addIntern() {
             answers.intSchool
         );
         teamArr.push(intern);
-        createIntern();
         askMember(answers);
     });
 }
@@ -191,63 +188,43 @@ function createManager() {
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
                 <div class="card-header">
-                    <h2>${Manager.name}</h2>
-                    <h3>Manager</h3>
+                    <h2>${Manager.getName()}</h2>
+                    <h3>${Manager.getRole()}</h3>
                 </div>
             <div class="outerGroup">
                 <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Manager.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></li>
-                    <li class="list-group-item">Office number: ${Manager.officeNumber}</li>
+                    <li class="list-group-item">ID: ${Manager.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${Manager.getEmail()}">${Manager.getEmail()}</a></li>
+                    <li class="list-group-item">Office number: ${Manager.getEmail()}</li>
                 </ul>
             </div>
         </div>
 `
     };
+    console.log("Generated Manager")
 };
 
 // Create the Engineer HTML content based on user input
-function createEngineer() {
-    for (const Engineer of teamArr) {
+function createTeamMember() {
+    for (const Employee of teamArr) {
         return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
                 <div class="card-header">
-                    <h2>${Engineer.name}</h2>
-                    <h3>Engineer</h3>
+                    <h2>${getName(Employee)}</h2>
+                    <h3>${getRole(Employee)}</h3>
                 </div>
             <div class="outerGroup">
                 <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Engineer.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Engineer.email}">${Engineer.email}</a></li>
-                    <li class="list-group-item">GitHub Username: ${Engineer.github}</li>
+                    <li class="list-group-item">ID: ${getId(id)}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${getEmail(email)}">${getEmail(email)}</a></li>
+                    <li class="list-group-item"></li>
                 </ul>
             </div>
         </div>
         `
     };
-};
-
-// Create the Intern HTML content based on user input
-function createIntern() {
-    for (const Intern of teamArr) {
-        return `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Intern.name}</h2>
-                    <h3>Engineer</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Intern.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
-                    <li class="list-group-item">School: ${Intern.school}</li>
-                </ul>
-            </div>
-        </div>
-`
-    };
+    console.log(`Generated Team Member`)
 };
 
 function createHTML() {
@@ -275,8 +252,7 @@ function createHTML() {
     </section>
 
     <section class="container-fluid row teamCardGroup">
-    ${createEngineer()}
-    ${createIntern()}
+    ${createTeamMember()}
     </section>
 
 </body>
@@ -292,8 +268,10 @@ function writeHTML(file, data) {
 
 // Finish team and generate the HTML based on the array responses
 function finishTeam() {
-    writeHTML('./dist/index.html', createHTML())
-    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.")
+    writeHTML('./dist/index.html', createHTML());
+    console.log(managerArr);
+    console.log(teamArr);
+    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
 };
 
 
