@@ -1,5 +1,6 @@
 // App dependencies
 const inquirer = require("inquirer");
+const fs = require('fs');
 
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
@@ -12,14 +13,75 @@ const createHTML = require('./src/template');
 var managerArr = [];
 var teamArr = [];
 
+// Create the Manager HTML content based on user input
 function createManager() {
     for (const Manager of managerArr) {
-        console.log(Manager.name);
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Manager.name}</h2>
+                <h3>Manager</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Manager.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></li>
+                <li class="list-group-item">Office number: ${Manager.officeNumber}</li>
+            </ul>
+        </div>
+    </div>
+        `
+    }
+}
+
+// Create the Engineer HTML content based on user input
+function createEngineer() {
+    for (const Engineer of teamArr) {
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Engineer.name}</h2>
+                <h3>Engineer</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Engineer.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Engineer.email}">${Engineer.email}</a></li>
+                <li class="list-group-item">GitHub Username: ${Engineer.github}</li>
+            </ul>
+        </div>
+    </div>
+        `
+    }
+}
+
+// Create the Intern HTML content based on user input
+function createIntern() {
+    for (const Intern of teamArr) {
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Intern.name}</h2>
+                <h3>Engineer</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Intern.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
+                <li class="list-group-item">School: ${Intern.school}</li>
+            </ul>
+        </div>
+    </div>
+        `
     }
 }
 
 // Start the app and
 // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
+// Then call HTML generation function
 function startApp() {
     managerArr = [];
     teamArr = [];
@@ -49,8 +111,7 @@ function addEngineer() {
             answers.engGit
         );
         teamArr.push(engineer);
-        console.log(engineer);
-        console.log(teamArr);
+        createEngineer();
         askMember(answers);
     });
 }
@@ -66,18 +127,10 @@ function addIntern() {
             answers.intSchool
         );
         teamArr.push(intern);
-        console.log(intern);
-        console.log(teamArr);
+        createIntern();
         askMember(answers);
     });
 }
-
-// Finish team and generate the HTML based on the array responses
-function finishTeam() {
-    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.")
-    createHTML();
-};
-
 
 // Prompts to ask for Manager
 const managerPrompts = [
@@ -192,6 +245,17 @@ function addMember(answers) {
             finishTeam();
             break;
     };
+};
+
+// Function to write HTML file
+function writeHTML(file, data) {
+    return fs.writeFileSync(file, data);
+}
+
+// Finish team and generate the HTML based on the array responses
+function finishTeam() {
+    writeHTML('./dist/index.html', createHTML())
+    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.")
 };
 
 

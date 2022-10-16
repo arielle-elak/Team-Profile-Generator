@@ -1,10 +1,69 @@
 // Template for HTML Generation
 
+// Create the Manager HTML content based on user input
+function createManager() {
+    for (const Manager of managerArr) {
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Manager.name}</h2>
+                <h3>Manager</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Manager.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Manager.email}">${Manager.email}</a></li>
+                <li class="list-group-item">Office number: ${Manager.officeNumber}</li>
+            </ul>
+        </div>
+    </div>
+        `
+    }
+}
 
+// Create the Engineer HTML content based on user input
+function createEngineer() {
+    for (const Engineer of teamArr) {
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Engineer.name}</h2>
+                <h3>Engineer</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Engineer.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Engineer.email}">${Engineer.email}</a></li>
+                <li class="list-group-item">GitHub Username: ${Engineer.github}</li>
+            </ul>
+        </div>
+    </div>
+        `
+    }
+}
 
-
-function createTeamMember() {
-
+// Create the Intern HTML content based on user input
+function createIntern() {
+    for (const Intern of teamArr) {
+        return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="card teamCard">
+            <div class="card-header">
+                <h2>${Intern.name}</h2>
+                <h3>Engineer</h3>
+            </div>
+        <div class="outerGroup">
+            <ul class="list-group list-group-flush innerGroup">
+                <li class="list-group-item">ID: ${Intern.id}</li>
+                <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
+                <li class="list-group-item">School: ${Intern.school}</li>
+            </ul>
+        </div>
+    </div>
+        `
+    }
 }
 
 function createHTML() {
@@ -28,111 +87,17 @@ function createHTML() {
     </header>
 
     <section class="container-fluid row managerCard">
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Jared</h2>
-                    <h3>Manager</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: 1</li>
-                    <li class="list-group-item">Email: <a href="mailto:jared@fakemail.com">jared@fakemail.com</a></li>
-                     <li class="list-group-item">Office number: 123-456-7890</li>
-                </ul>
-            </div>
-        </div>
-
+    ${createManager()}
     </section>
 
-
-
     <section class="container-fluid row teamCardGroup">
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Guy</h2>
-                    <h3>Engineer</h3>
-                </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: 1</li>
-                        <li class="list-group-item">Email: <a href="mailto:guy@fakemail.com">guy@fakemail.com</a></li>
-                        <li class="list-group-item">GitHub Username: <a href="https://github.com/some-guy/">some-guy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Guy</h2>
-                    <h3>Engineer</h3>
-                </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: 1</li>
-                        <li class="list-group-item">Email: <a href="mailto:guy@fakemail.com">guy@fakemail.com</a></li>
-                        <li class="list-group-item">GitHub Username: <a href="https://github.com/some-guy/">some-guy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Guy</h2>
-                    <h3>Engineer</h3>
-                </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: 1</li>
-                        <li class="list-group-item">Email: <a href="mailto:guy@fakemail.com">guy@fakemail.com</a></li>
-                        <li class="list-group-item">GitHub Username: <a href="https://github.com/some-guy/">some-guy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Guy</h2>
-                    <h3>Engineer</h3>
-                </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: 1</li>
-                        <li class="list-group-item">Email: <a href="mailto:guy@fakemail.com">guy@fakemail.com</a></li>
-                        <li class="list-group-item">GitHub Username: <a href="https://github.com/some-guy/">some-guy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>Guy</h2>
-                    <h3>Engineer</h3>
-                </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: 1</li>
-                        <li class="list-group-item">Email: <a href="mailto:guy@fakemail.com">guy@fakemail.com</a></li>
-                        <li class="list-group-item">GitHub Username: <a href="https://github.com/some-guy/">some-guy</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+    ${createEngineer()}
+    ${createIntern()}
     </section>
 
 </body>
 </html>
 `
 };
+
+module.exports = createHTML, createManager, createEngineer, createIntern
