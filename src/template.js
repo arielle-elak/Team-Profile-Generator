@@ -1,5 +1,12 @@
 // Template for HTML Generation
 
+
+
+
+function createTeamMember() {
+
+}
+
 function createHTML() {
 
     return`<!--Team Profile Generator HTML-->
@@ -129,5 +136,3 @@ function createHTML() {
 </html>
 `
 };
-
-module.exports = createHTML

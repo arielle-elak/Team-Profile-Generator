@@ -6,11 +6,17 @@ const Manager = require("./lib/Manager");
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const createHTML = require('./src/template')
+const createHTML = require('./src/template');
 
 // Arrays for capturing input during inquirer
 var managerArr = [];
 var teamArr = [];
+
+function createManager() {
+    for (const Manager of managerArr) {
+        console.log(Manager.name);
+    }
+}
 
 // Start the app and
 // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
@@ -26,8 +32,7 @@ function startApp() {
             answers.managerPhone
         );
         managerArr.push(manager);
-        console.log(manager);
-        console.log(managerArr);
+        createManager();
         askMember(answers);
     });
 }
