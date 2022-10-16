@@ -49,7 +49,9 @@ function startApp() {
                 answers.managerPhone
             );
             managerArr.push(manager);
-            askMember(answers)
+            console.log(manager);
+            console.log(managerArr);
+            askMember(answers);
         });
 };
 
