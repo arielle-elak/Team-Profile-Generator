@@ -36,12 +36,12 @@ function startApp() {
 
         ])
         .then((answers) =>
-            addMember(answers)
+            askMember(answers)
         )
 };
 
 // Start the team adding process
-function addMember(answers) {
+function askMember(answers) {
     return inquirer
         .prompt([
             {
@@ -52,10 +52,37 @@ function addMember(answers) {
             }
 
         ])
-        .then((answers) =>
-            console.log(answers.teamMember)
-        )
+        .then((answers) => addMember(answers))
 };
+
+function addMember(answers) {
+    switch (answers.teamMember) {
+        case "Add an Engineer":
+            addEngineer(answers);
+            break;
+        case "Add an Intern":
+            addIntern(answers);
+            break;
+        case "Team is Complete":
+            finishTeam(answers);
+            break;
+    };
+};
+
+function addEngineer(answers) {
+    console.log(answers.managerName)
+}
+
+function addIntern(answers) {
+    console.log(answers.managerName)
+
+}
+
+function finishTeam(answers) {
+    console.log(answers.managerName)
+}
+
+
 
 // Initiate the addTeam function to start asking questions
 startApp();
