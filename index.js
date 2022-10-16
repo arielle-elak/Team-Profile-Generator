@@ -6,6 +6,11 @@ const Manager = require("./lib/Manager");
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+// Arrays for capturing input during inquirer
+var managerArr = [];
+var memberArr = [];
+
+
 // Start the team adding process
 function startApp() {
     return inquirer
@@ -35,9 +40,17 @@ function startApp() {
             }
 
         ])
-        .then((answers) =>
+        .then((answers) => {
+            // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
+            const manager = new Manager(
+                answers.managerName,
+                answers.managerID,
+                answers.managerEmail,
+                answers.managerPhone
+            );
+            managerArr.push(manager);
             askMember(answers)
-        )
+        });
 };
 
 // Start the team adding process
@@ -106,7 +119,7 @@ function addEngineer() {
 };
 
 function addIntern() {
-    //console.log("Chose to add an Engineer")
+    //console.log("Chose to add an Intern")
     return inquirer
         .prompt([
             {
