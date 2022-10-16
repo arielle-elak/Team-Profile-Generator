@@ -141,7 +141,7 @@ function addIntern() {
 };
 
 function finishTeam() {
-    //console.log("Chose to Finish Team")
+    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.")
 };
 
 
