@@ -207,7 +207,7 @@ function createManager() {
 // Create the Engineer HTML content based on user input using Engineer class blueprint
 function createEngineer() {
     console.log("Generated Engineer")
-    return `
+    return`
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
                 <div class="card-header">
@@ -228,7 +228,7 @@ function createEngineer() {
 // Create the Intern HTML content based on user input using Intern class blueprint
 function createIntern() {
     console.log("Generated Intern")
-    return `
+    return`
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
                 <div class="card-header">
@@ -251,10 +251,13 @@ function createIntern() {
 function createTeamMember() {
     for (const Employee of teamArr) {
         if (Employee.getRole() === "Engineer") {
+            createEngineer();
             console.log(`Generated Engineer`);
+
         };
 
         if (Employee.getRole() === "Intern") {
+            createIntern();
             console.log(`Generated Intern`);
         };
     };
