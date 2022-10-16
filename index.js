@@ -19,19 +19,19 @@ function addTeam() {
             {
                 type: "input",
                 name: "managerID",
-                message: (answers) => `What is ${answers.managerName}'s Employee ID?`
+                message: (answers) => `${answers.managerName}'s Employee ID:`
             },
 
             {
                 type: "input",
                 name: "managerEmail",
-                message: (answers) => `What is ${answers.managerName}'s Email Address?`
+                message: (answers) => `${answers.managerName}'s Email Address:`
             },
 
             {
                 type: "input",
                 name: "managerPhone",
-                message: (answers) => `What is ${answers.managerName}'s Phone Number?`
+                message: (answers) => `${answers.managerName}'s Phone Number:`
             }
         ])
         .then((answers) =>
