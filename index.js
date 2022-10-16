@@ -52,35 +52,67 @@ function askMember(answers) {
             }
 
         ])
-        .then((answers) => addMember(answers))
+        .then((answers) =>
+            addMember(answers))
 };
 
 function addMember(answers) {
     switch (answers.teamMember) {
         case "Add an Engineer":
-            addEngineer(answers);
+            addEngineer();
             break;
         case "Add an Intern":
-            addIntern(answers);
+            addIntern();
             break;
         case "Team is Complete":
-            finishTeam(answers);
+            finishTeam();
             break;
     };
 };
 
-function addEngineer(answers) {
-    console.log(answers.managerName)
-}
+function addEngineer() {
+    //console.log("Chose to add an Engineer")
+    return inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "engName",
+                message: "What is the Engineer's Name?"
+            },
 
-function addIntern(answers) {
-    console.log(answers.managerName)
+            {
+                type: "input",
+                name: "engID",
+                message: (answers) => `${answers.engName}'s Employee ID:`
+            },
 
-}
+            {
+                type: "input",
+                name: "engEmail",
+                message: (answers) => `${answers.engName}'s Email Address:`
+            },
 
-function finishTeam(answers) {
-    console.log(answers.managerName)
-}
+            {
+                type: "input",
+                name: "engGit",
+                message: (answers) => `${answers.engName}'s GitHub Username:`
+            },
+
+        ])
+        .then((answers) =>
+            console.log(`${answers.engName} | ${answers.engID} | ${answers.engEmail} | ${answers.engGit}` )
+    )
+
+};
+
+function addIntern() {
+    //console.log("Chose to add an Intern")
+
+};
+
+function finishTeam() {
+    //console.log("Chose to Finish Team")
+};
 
 
 
