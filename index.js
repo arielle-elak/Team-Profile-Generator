@@ -96,7 +96,7 @@ function addEngineer() {
                 type: "input",
                 name: "engGit",
                 message: (answers) => `${answers.engName}'s GitHub Username:`
-            },
+            }
 
         ])
         .then((answers) =>
@@ -106,7 +106,37 @@ function addEngineer() {
 };
 
 function addIntern() {
-    //console.log("Chose to add an Intern")
+    //console.log("Chose to add an Engineer")
+    return inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "intName",
+                message: "What is the Intern's Name?"
+            },
+
+            {
+                type: "input",
+                name: "intID",
+                message: (answers) => `${answers.intName}'s Employee ID:`
+            },
+
+            {
+                type: "input",
+                name: "intEmail",
+                message: (answers) => `${answers.intName}'s Email Address:`
+            },
+
+            {
+                type: "input",
+                name: "intSchool",
+                message: (answers) => `${answers.intName}'s GitHub Username:`
+            }
+
+        ])
+        .then((answers) =>
+            console.log(`${answers.intName} | ${answers.intID} | ${answers.intEmail} | ${answers.intSchool}` )
+    )
 
 };
 
