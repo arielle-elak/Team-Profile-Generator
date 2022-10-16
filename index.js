@@ -7,7 +7,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 // Start the team adding process
-function addTeam() {
+function startApp() {
     return inquirer
         .prompt([
             {
@@ -32,19 +32,30 @@ function addTeam() {
                 type: "input",
                 name: "managerPhone",
                 message: (answers) => `${answers.managerName}'s Phone Number:`
-            },
+            }
 
+        ])
+        .then((answers) =>
+            addMember(answers)
+        )
+};
+
+// Start the team adding process
+function addMember(answers) {
+    return inquirer
+        .prompt([
             {
                 type: "list",
                 name: "teamMember",
-                message: `Would you like to add a member to this team?`,
+                message: `Would you like to add a member to ${answers.managerName}'s team?`,
                 choices: ["Add an Engineer", "Add an Intern", "Team is Complete"],
             }
+
         ])
         .then((answers) =>
-            console.log(`${answers.managerName} | ${answers.managerID} | ${answers.managerEmail} | ${answers.managerPhone} | ${answers.teamMember}`)
+            console.log(answers.teamMember)
         )
 };
 
 // Initiate the addTeam function to start asking questions
-addTeam();
+startApp();
