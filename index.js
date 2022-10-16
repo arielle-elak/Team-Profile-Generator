@@ -7,62 +7,12 @@ const Manager = require("./lib/Manager");
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-
+const generateHTML = require('./src/template')
 
 // Arrays for capturing input during inquirer
 var managerArr = [];
-var teamArr = [];
-
-
-// Start the app and
-// Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
-// Then call HTML generation function
-function startApp() {
-    managerArr = [];
-    teamArr = [];
-    inquirer.prompt(managerPrompts)
-    .then((answers) => {
-        const manager = new Manager(
-            answers.managerName,
-            answers.managerID,
-            answers.managerEmail,
-            answers.managerPhone
-        );
-        managerArr.push(manager);
-        askMember(answers);
-    });
-}
-
-
-// Create new Engineer object from Manager blueprint, taken from Employee master and push to member array
-function addEngineer() {
-    inquirer.prompt(engineerPrompts)
-    .then((answers) => {
-        const engineer = new Engineer(
-            answers.engName,
-            answers.engID,
-            answers.engEmail,
-            answers.engGit
-        );
-        teamArr.push(engineer);
-        askMember(answers);
-    });
-}
-
-// Create new Intern object from Manager blueprint, taken from Employee master and push to member array
-function addIntern() {
-    inquirer.prompt(internPrompts)
-    .then((answers) => {
-        const intern = new Intern(
-            answers.intName,
-            answers.intID,
-            answers.intEmail,
-            answers.intSchool
-        );
-        teamArr.push(intern);
-        askMember(answers);
-    });
-}
+var engineerArr = [];
+var internArr = [];
 
 // Prompts to ask for Manager
 const managerPrompts = [
@@ -147,6 +97,63 @@ const internPrompts = [
 ];
 
 
+// Start the app and
+// Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
+// Then call HTML generation function
+function startApp() {
+    managerArr = [];
+    engineerArr = [];
+    internArr = [];
+
+    inquirer.prompt(managerPrompts)
+    .then((answers) => {
+        const manager = new Manager(
+            answers.managerName,
+            answers.managerID,
+            answers.managerEmail,
+            answers.managerPhone
+        );
+        managerArr.push(manager);
+        console.log(managerArr);
+        askMember(answers);
+    });
+}
+
+
+// Create new Engineer object from Manager blueprint, taken from Employee master and push to member array
+function addEngineer() {
+    inquirer.prompt(engineerPrompts)
+    .then((answers) => {
+        const engineer = new Engineer(
+            answers.engName,
+            answers.engID,
+            answers.engEmail,
+            answers.engGit
+        );
+        engineerArr.push(engineer);
+        console.log(engineerArr);
+        askMember(answers);
+    });
+}
+
+// Create new Intern object from Manager blueprint, taken from Employee master and push to member array
+function addIntern() {
+    inquirer.prompt(internPrompts)
+    .then((answers) => {
+        const intern = new Intern(
+            answers.intName,
+            answers.intID,
+            answers.intEmail,
+            answers.intSchool
+        );
+        internArr.push(intern);
+        console.log(internArr)
+        askMember(answers);
+    });
+}
+
+
+
 
 // Start the team adding process
 function askMember() {
@@ -179,108 +186,6 @@ function addMember(answers) {
     };
 };
 
-// Template for HTML Generation
-
-// Create the Manager HTML content based on user input using Manager class blueprint
-function createManager() {
-    for (const Manager of managerArr) {
-        return `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Manager.getName()}</h2>
-                    <h3>${Manager.getRole()}</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Manager.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Manager.getEmail()}">${Manager.getEmail()}</a></li>
-                    <li class="list-group-item">Office number: ${Manager.getEmail()}</li>
-                </ul>
-            </div>
-        </div>
-`
-    };
-    console.log("Generated Manager")
-};
-
-// Filter between Engineer and Intern to determine which content to generate
-function createTeamMember() {
-    for (const Employee of teamArr) {
-        if (Employee.getRole() === "Engineer") {
-            console.log(`Generated Engineer`);
-            return `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Employee.name}</h2>
-                    <h3>Engineer</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Employee.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Employee.email}">${Employee.email}</a></li>
-                    <li class="list-group-item">GitHub Username: ${Employee.github}</li>
-                </ul>
-            </div>
-        </div>
-        `
-        };
-
-        if (Employee.getRole() === "Intern") {
-            console.log(`Generated Intern`);
-            return `
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Intern.name}</h2>
-                    <h3>Engineer</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Intern.id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
-                    <li class="list-group-item">School: ${Intern.school}</li>
-                </ul>
-            </div>
-        </div>
-`
-        };
-    };
-};
-
-// Write the HTML content
-function createHTML() {
-    console.log(managerArr);
-    console.log(teamArr);
-
-    return`<!--Team Profile Generator HTML-->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--Boostrap and Responsive Viewport-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>My Team</title>
-</head>
-<body>
-    <header>
-        <h1>My Team</h1>
-    </header>
-    <section class="container-fluid row managerCard">
-    ${createManager()}
-    </section>
-    <section class="container-fluid row teamCardGroup">
-    ${createTeamMember()}
-    </section>
-</body>
-</html>
-`
-};
-
 
 // Generate HTML file base function using fs.writeFileSync
 function writeHTML(file, data) {
@@ -289,7 +194,7 @@ function writeHTML(file, data) {
 
 // Finish team and generate the HTML
 function finishTeam() {
-    writeHTML('./dist/index.html', createHTML());
+    writeHTML('./dist/index.html', generateHTML(managerArr));
     console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
 };
 
