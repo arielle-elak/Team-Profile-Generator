@@ -204,69 +204,57 @@ function createManager() {
     console.log("Generated Manager")
 };
 
-// Create the Engineer HTML content based on user input using Engineer class blueprint
-function createEngineer() {
-    console.log("Generated Engineer")
-    return`
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Engineer.getName()}</h2>
-                    <h3>${Engineer.getRole()}</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Engineer.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Engineer.getEmail()}">${Engineer.getEmail()}</a></li>
-                    <li class="list-group-item">GitHub Username: <a href="https://github.com/${Engineer.github}">${Engineer.github}</a></li>
-                </ul>
-            </div>
-        </div>
-`
-};
-
-// Create the Intern HTML content based on user input using Intern class blueprint
-function createIntern() {
-    console.log("Generated Intern")
-    return`
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-            <div class="card teamCard">
-                <div class="card-header">
-                    <h2>${Intern.getName()}</h2>
-                    <h3>${Intern.getRole()}</h3>
-                </div>
-            <div class="outerGroup">
-                <ul class="list-group list-group-flush innerGroup">
-                    <li class="list-group-item">ID: ${Intern.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${Intern.getEmail()}">${Intern.getEmail()}</a></li>
-                    <li class="list-group-item">School Name: ${Intern.getSchool()}</li>
-                </ul>
-            </div>
-        </div>
-`
-};
-
-
-// Create the Engineer HTML content based on user input using Engineer class blueprint
+// Filter between Engineer and Intern to determine which content to generate
 function createTeamMember() {
     for (const Employee of teamArr) {
         if (Employee.getRole() === "Engineer") {
-            createEngineer();
             console.log(`Generated Engineer`);
-
+            return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="card teamCard">
+                <div class="card-header">
+                    <h2>${Employee.name}</h2>
+                    <h3>Engineer</h3>
+                </div>
+            <div class="outerGroup">
+                <ul class="list-group list-group-flush innerGroup">
+                    <li class="list-group-item">ID: ${Employee.id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${Employee.email}">${Employee.email}</a></li>
+                    <li class="list-group-item">GitHub Username: ${Employee.github}</li>
+                </ul>
+            </div>
+        </div>
+        `
         };
 
         if (Employee.getRole() === "Intern") {
-            createIntern();
             console.log(`Generated Intern`);
+            return `
+        <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+            <div class="card teamCard">
+                <div class="card-header">
+                    <h2>${Intern.name}</h2>
+                    <h3>Engineer</h3>
+                </div>
+            <div class="outerGroup">
+                <ul class="list-group list-group-flush innerGroup">
+                    <li class="list-group-item">ID: ${Intern.id}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${Intern.email}">${Intern.email}</a></li>
+                    <li class="list-group-item">School: ${Intern.school}</li>
+                </ul>
+            </div>
+        </div>
+`
         };
     };
 };
 
+// Write the HTML content
 function createHTML() {
+    console.log(managerArr);
+    console.log(teamArr);
 
     return`<!--Team Profile Generator HTML-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -282,34 +270,28 @@ function createHTML() {
     <header>
         <h1>My Team</h1>
     </header>
-
     <section class="container-fluid row managerCard">
     ${createManager()}
     </section>
-
     <section class="container-fluid row teamCardGroup">
     ${createTeamMember()}
     </section>
-
 </body>
 </html>
 `
 };
 
 
-// Function to write HTML file
+// Generate HTML file base function using fs.writeFileSync
 function writeHTML(file, data) {
     return fs.writeFileSync(file, data);
 }
 
-// Finish team and generate the HTML based on the array responses
+// Finish team and generate the HTML
 function finishTeam() {
     writeHTML('./dist/index.html', createHTML());
-    console.log(managerArr);
-    console.log(teamArr);
     console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
 };
-
 
 
 // Initiate the addTeam function to start asking questions
