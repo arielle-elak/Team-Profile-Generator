@@ -1,5 +1,6 @@
 // App dependencies
 const inquirer = require("inquirer");
+const path = require('path');
 const fs = require('fs');
 
 const Employee = require("./lib/Employee");
@@ -13,6 +14,10 @@ const generateHTML = require('./src/template')
 var managerArr = [];
 var engineerArr = [];
 var internArr = [];
+
+// Constants for file writing
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const contents = path.join(DIST_DIR, 'index.html');
 
 // Prompts to ask for Manager
 const managerPrompts = [
@@ -187,14 +192,12 @@ function addMember(answers) {
 };
 
 
-// Generate HTML file base function using fs.writeFileSync
-function writeHTML(file, data) {
-    return fs.writeFileSync(file, data);
-}
-
-// Finish team and generate the HTML
+// Finish team and generate the HTML within the dist folder to the index.html file
 function finishTeam() {
-    writeHTML('./dist/index.html', generateHTML(managerArr));
+    if (!fs.existsSync(DIST_DIR)) {
+        fs.mkdirSync(DIST_DIR)
+    }
+    fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
     console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
 };
 

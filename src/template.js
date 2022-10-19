@@ -1,9 +1,12 @@
 // Template for HTML Generation
 
+
+
 // Create the Manager HTML content based on user input using Manager class blueprint
 
-function createManager() {
-    console.log("Generated Manager");
+function createManager(managerArr) {
+    for (const manager of managerArr) {
+        console.log("Generated Manager");
         return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
@@ -20,11 +23,13 @@ function createManager() {
             </div>
         </div>
 `
+    };
 };
 
 // Create the Engineer HTML content based on user input using Engineer class blueprint
-function createEngineer() {
-    console.log("Generated Engineer");
+function createEngineer(engineerArr) {
+    for (const engineer of engineerArr) {
+        console.log("Generated Engineer");
         return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
@@ -41,11 +46,13 @@ function createEngineer() {
             </div>
         </div>
 `
+    };
 };
 
 // Create the Intern HTML content based on user input using Intern class blueprint
-function createIntern() {
-    console.log("Generated Intern");
+function createIntern(internArr) {
+    for (const intern of internArr) {
+        console.log("Generated Intern");
         return `
         <div class="col-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card teamCard">
@@ -62,10 +69,11 @@ function createIntern() {
             </div>
         </div>
 `
+    };
 };
 
 // Write the HTML content
-function generateHTML() {
+function generateHTML(managerArr, engineerArr, internArr) {
 
     return`<!--Team Profile Generator HTML-->
 <!DOCTYPE html>
@@ -85,15 +93,15 @@ function generateHTML() {
     </header>
 
     <section class="container-fluid row managerCard">
-        ${createManager()}
+        ${createManager(managerArr)}
     </section>
 
     <section class="container-fluid row teamCardGroup">
-        ${createEngineer()}
+        ${createEngineer(engineerArr)}
     </section>
 
     <section class="container-fluid row teamCardGroup">
-        ${createIntern()}
+        ${createIntern(internArr)}
     </section>
 
 </body>
