@@ -2,6 +2,8 @@
 
 // Cycle through each Array
 
+const generateHTML = renderHTML => {
+
 function generateManager(managerArr) {
     if (managerArr.length > 0) {
         for (const manager of managerArr) {
@@ -114,23 +116,22 @@ function generateHTML(managerArr, engineerArr, internArr) {
     <header>
         <h1>My Team</h1>
     </header>
-
     <section class="container-fluid row managerCard">
         ${generateManager(managerArr)}
     </section>
-
     <section class="container-fluid row teamCardGroup">
         ${generateEngineer(engineerArr)}
     </section>
-
     <section class="container-fluid row teamCardGroup">
         ${generateIntern(internArr)}
     </section>
-
 </body>
 </html>
 `
 };
+};
 
 
-module.exports = generateHTML
+module.exports = renderHTML => {
+    generateHTML();
+}
