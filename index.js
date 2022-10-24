@@ -10,10 +10,7 @@ const Intern = require('./lib/Intern');
 
 const generateHTML = require('./src/template')
 
-// Arrays for capturing input during inquirer
-var managerArr = [];
-var engineerArr = [];
-var internArr = [];
+
 
 // Constants for file writing
 const DIST_DIR = path.resolve(__dirname, 'dist');
@@ -106,9 +103,11 @@ const internPrompts = [
 // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
 // Then call HTML generation function
 function startApp() {
-    managerArr = [];
-    engineerArr = [];
-    internArr = [];
+
+// Arrays for capturing input during inquirer
+    const managerArr = [];
+    const engineerArr = [];
+    const internArr = [];
 
     inquirer.prompt(managerPrompts)
     .then((answers) => {
@@ -122,7 +121,7 @@ function startApp() {
         console.log(managerArr);
         askMember(answers);
     });
-}
+
 
 
 // Create new Engineer object from Manager blueprint, taken from Employee master and push to member array
@@ -191,7 +190,6 @@ function addMember(answers) {
     };
 };
 
-
 // Finish team and generate the HTML within the dist folder to the index.html file
 function finishTeam() {
     if (!fs.existsSync(DIST_DIR)) {
@@ -199,6 +197,7 @@ function finishTeam() {
     }
     fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
     console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
+};
 };
 
 
