@@ -104,100 +104,99 @@ const internPrompts = [
 // Then call HTML generation function
 function startApp() {
 
-// Arrays for capturing input during inquirer
+    // Arrays for capturing input during inquirer
     const managerArr = [];
     const engineerArr = [];
     const internArr = [];
 
     inquirer.prompt(managerPrompts)
-    .then((answers) => {
-        const manager = new Manager(
-            answers.managerName,
-            answers.managerID,
-            answers.managerEmail,
-            answers.managerPhone
-        );
-        managerArr.push(manager);
-        console.log(managerArr);
-        askMember(answers);
-    });
+        .then((answers) => {
+            const manager = new Manager(
+                answers.managerName,
+                answers.managerID,
+                answers.managerEmail,
+                answers.managerPhone
+            );
+            managerArr.push(manager);
+            console.log(managerArr);
+            askMember(answers);
+        });
 
 
 
-// Create new Engineer object from Manager blueprint, taken from Employee master and push to member array
-function addEngineer() {
-    inquirer.prompt(engineerPrompts)
-    .then((answers) => {
-        const engineer = new Engineer(
-            answers.engName,
-            answers.engID,
-            answers.engEmail,
-            answers.engGit
-        );
-        engineerArr.push(engineer);
-        console.log(engineerArr);
-        askMember(answers);
-    });
-}
-
-// Create new Intern object from Manager blueprint, taken from Employee master and push to member array
-function addIntern() {
-    inquirer.prompt(internPrompts)
-    .then((answers) => {
-        const intern = new Intern(
-            answers.intName,
-            answers.intID,
-            answers.intEmail,
-            answers.intSchool
-        );
-        internArr.push(intern);
-        console.log(internArr)
-        askMember(answers);
-    });
-}
-
-
-
-
-// Start the team adding process
-function askMember() {
-    return inquirer
-        .prompt([
-            {
-                type: "list",
-                name: "teamMember",
-                message: `Would you like to add team member?`,
-                choices: ["Add an Engineer", "Add an Intern", "Team is Complete"],
-            }
-
-        ])
-        .then((answers) =>
-            addMember(answers))
-};
-
-// Function to decide which function to go to based on selection
-function addMember(answers) {
-    switch (answers.teamMember) {
-        case "Add an Engineer":
-            addEngineer();
-            break;
-        case "Add an Intern":
-            addIntern();
-            break;
-        case "Team is Complete":
-            finishTeam();
-            break;
-    };
-};
-
-// Finish team and generate the HTML within the dist folder to the index.html file
-function finishTeam() {
-    if (!fs.existsSync(DIST_DIR)) {
-        fs.mkdirSync(DIST_DIR)
+    // Create new Engineer object from Manager blueprint, taken from Employee master and push to member array
+    function addEngineer() {
+        inquirer.prompt(engineerPrompts)
+            .then((answers) => {
+                const engineer = new Engineer(
+                    answers.engName,
+                    answers.engID,
+                    answers.engEmail,
+                    answers.engGit
+                );
+                engineerArr.push(engineer);
+                console.log(engineerArr);
+                askMember(answers);
+            });
     }
-    fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
-    console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
-};
+
+    // Create new Intern object from Manager blueprint, taken from Employee master and push to member array
+    function addIntern() {
+        inquirer.prompt(internPrompts)
+            .then((answers) => {
+                const intern = new Intern(
+                    answers.intName,
+                    answers.intID,
+                    answers.intEmail,
+                    answers.intSchool
+                );
+                internArr.push(intern);
+                console.log(internArr)
+                askMember(answers);
+            });
+    }
+
+
+
+
+    // Start the team adding process
+    function askMember() {
+        return inquirer
+            .prompt([
+                {
+                    type: "list",
+                    name: "teamMember",
+                    message: `Would you like to add team member?`,
+                    choices: ["Add an Engineer", "Add an Intern", "Team is Complete"],
+                }
+
+            ])
+            .then((answers) =>
+                addMember(answers))
+    };
+
+    // Function to decide which function to go to based on selection
+    function addMember(answers) {
+        switch (answers.teamMember) {
+            case "Add an Engineer":
+                addEngineer();
+                break;
+            case "Add an Intern":
+                addIntern();
+                break;
+            case "Team is Complete":
+                // Finish team and generate the HTML within the dist folder to the index.html file
+                if (!fs.existsSync(DIST_DIR)) {
+                    fs.mkdirSync(DIST_DIR)
+                }
+
+                fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
+
+                console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
+
+                break;
+        };
+    };
 };
 
 
