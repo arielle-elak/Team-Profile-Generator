@@ -38,6 +38,7 @@ Please see the video below for a demonstration of the functionality of this app:
 
 
 ## Contributing
+Utilized the RegEx email validation for inquirer. Please see https://regexr.com/3e48o for more details.
 You are welcome to contribute if you wish! Please feel free to contact me using the information in the Questions and Contact section.
 
 
