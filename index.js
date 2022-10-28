@@ -77,25 +77,50 @@ const engineerPrompts = [
     {
         type: "input",
         name: "engName",
-        message: "What is the Engineer's Name?"
+        message: "What is the Engineer's Name?",
+        validate: async (input) => {
+            if (!input) {
+                return 'Engineer name cannot be blank.'
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "engID",
-        message: (answers) => `${answers.engName}'s Employee ID:`
+        message: (answers) => `${answers.engName}'s Employee ID:`,
+        validate: async (input) => {
+            if (isNaN(input)) {
+                return "ID must contain numbers only."
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "engEmail",
-        message: (answers) => `${answers.engName}'s Email Address:`
+        message: (answers) => `${answers.engName}'s Email Address:`,
+        validate: async (input) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (!emailRegex.test(input)) {
+                return "Please provide a valid email address."
+            }
+            return true
+        }
     },
 
     {
         type: "input",
         name: "engGit",
-        message: (answers) => `${answers.engName}'s GitHub Username:`
+        message: (answers) => `${answers.engName}'s GitHub Username:`,
+        validate: async (input) => {
+            if (!input) {
+                return 'GitHub username cannot be blank.'
+            }
+            return true;
+        }
     }
 ];
 
@@ -104,25 +129,50 @@ const internPrompts = [
     {
         type: "input",
         name: "intName",
-        message: "What is the Intern's Name?"
+        message: "What is the Intern's Name?",
+        validate: async (input) => {
+            if (!input) {
+                return 'Intern name cannot be blank.'
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "intID",
-        message: (answers) => `${answers.intName}'s Employee ID:`
+        message: (answers) => `${answers.intName}'s Employee ID:`,
+        validate: async (input) => {
+            if (isNaN(input)) {
+                return "ID must contain numbers only."
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "intEmail",
-        message: (answers) => `${answers.intName}'s Email Address:`
+        message: (answers) => `${answers.intName}'s Email Address:`,
+        validate: async (input) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (!emailRegex.test(input)) {
+                return "Please provide a valid email address."
+            }
+            return true
+        }
     },
 
     {
         type: "input",
         name: "intSchool",
-        message: (answers) => `${answers.intName}'s School Name:`
+        message: (answers) => `${answers.intName}'s School Name:`,
+        validate: async (input) => {
+            if (!input) {
+                return 'School name cannot be blank.'
+            }
+            return true;
+        }
     }
 ];
 
@@ -141,7 +191,7 @@ function startApp() {
                 answers.managerPhone
             );
             managerArr.push(manager);
-            console.log(managerArr);
+            // console.log(managerArr);
             askMember(answers);
         });
 
@@ -158,7 +208,7 @@ function startApp() {
                     answers.engGit
                 );
                 engineerArr.push(engineer);
-                console.log(engineerArr);
+                // console.log(engineerArr);
                 askMember(answers);
             });
     }
@@ -174,7 +224,7 @@ function startApp() {
                     answers.intSchool
                 );
                 internArr.push(intern);
-                console.log(internArr)
+                // console.log(internArr)
                 askMember(answers);
             });
     }
@@ -202,15 +252,15 @@ function startApp() {
     function addMember(answers) {
         switch (answers.teamMember) {
             case "Add an Engineer":
-                console.log("Add an Engineer current arrays:\n" + managerArr, engineerArr, internArr)
+                // console.log("Add an Engineer current arrays:\n" + managerArr, engineerArr, internArr)
                 addEngineer();
                 break;
             case "Add an Intern":
-                console.log("Add an Intern current arrays:\n" + managerArr, engineerArr, internArr);
+                // console.log("Add an Intern current arrays:\n" + managerArr, engineerArr, internArr);
                 addIntern();
                 break;
             case "Team is Complete":
-                console.log("At Team Complete: \n" + managerArr, engineerArr, internArr);
+                // console.log("At Team Complete: \n" + managerArr, engineerArr, internArr);
                 // Finish team and generate the HTML within the dist folder to the index.html file
                 if (!fs.existsSync(DIST_DIR)) {
                     fs.mkdirSync(DIST_DIR)

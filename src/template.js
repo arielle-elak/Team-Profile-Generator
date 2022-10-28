@@ -3,11 +3,11 @@
 // Cycle through each Array
 
 const generateHTML = (managerArr, engineerArr, internArr) => {
-    console.log("Passed arrays: " + managerArr, engineerArr, internArr)
+    // console.log("Passed arrays: " + managerArr, engineerArr, internArr)
 
     // Create the Manager HTML content based on user input using Manager class blueprint
     const createManager = manager => {
-            console.log("createManager triggered");
+            // console.log("createManager triggered");
         return `
         <section class="row teamCardGroup">
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
@@ -33,7 +33,7 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
 
     // Create the Engineer HTML content based on user input using Engineer class blueprint
     const createEngineer = engineer => {
-            console.log("createEngineer triggered");
+            // console.log("createEngineer triggered");
             return `
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card teamCard">
@@ -56,7 +56,7 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
 
     // Create the Intern HTML content based on user input using Intern class blueprint
     const createIntern = intern => {
-            console.log("createIntern triggered");
+            // console.log("createIntern triggered");
             return `
             <div class="col-12 col-sm-6 col-md-4 col-lg-4">
                 <div class="card teamCard">
@@ -87,25 +87,25 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
     } else {
         managerArr.forEach(manager => {
             innerContent.push(createManager(manager));
-            console.log("Manager created from " + managerArr);
+            // console.log("Manager created from " + managerArr);
         });
     };
 
     if (!engineerArr) {
-        console.log("No Engineers Added");
+        // console.log("No Engineers Added");
     } else {
         engineerArr.forEach(engineer => {
             innerContent.push(createEngineer(engineer));
-            console.log("Engineer created from " + engineerArr);
+            // console.log("Engineer created from " + engineerArr);
         });
     };
 
     if (!internArr) {
-        console.log("No Interns Added");
+        // console.log("No Interns Added");
     } else {
         internArr.forEach(intern => {
             innerContent.push(createIntern(intern));
-            console.log("Intern created from " + internArr);
+            // console.log("Intern created from " + internArr);
         });
     };
 
