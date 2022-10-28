@@ -24,25 +24,50 @@ const managerPrompts = [
     {
         type: "input",
         name: "managerName",
-        message: "What is the Team Manager's Full Name?"
+        message: "What is the Team Manager's Full Name?",
+        validate: async (input) => {
+            if (!input) {
+                return 'Manager name cannot be blank.'
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "managerID",
-        message: (answers) => `${answers.managerName}'s Employee ID:`
+        message: (answers) => `${answers.managerName}'s Employee ID:`,
+        validate: async (input) => {
+            if (isNaN(input)) {
+                return "ID must contain numbers only."
+            }
+            return true;
+        }
     },
 
     {
         type: "input",
         name: "managerEmail",
-        message: (answers) => `${answers.managerName}'s Email Address:`
+        message: (answers) => `${answers.managerName}'s Email Address:`,
+        validate: async (input) => {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+            if (!emailRegex.test(input)) {
+                return "Please provide a valid email address."
+            }
+            return true
+        }
     },
 
     {
         type: "input",
         name: "managerPhone",
-        message: (answers) => `${answers.managerName}'s Phone Number:`
+        message: (answers) => `${answers.managerName}'s Phone Number:`,
+        validate: async (input) => {
+            if (isNaN(input)) {
+                return "Phone number must contain numbers only."
+            }
+            return true;
+        }
     }
 
 ];
