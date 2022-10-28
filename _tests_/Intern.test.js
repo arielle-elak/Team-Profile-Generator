@@ -7,7 +7,7 @@ test('Intern Blueprint', () => {
     const testname = "George Foreman";
     const testid = 5435435;
     const testemail = "george.foreman@mail.com";
-    const testschool = "School of Grillin'";
+    const testschool = "george-foreman";
     const test = new Intern(testname, testid, testemail, testschool);
     expect(test.name).toBe(testname);
     expect(test.id).toBe(testid);
@@ -17,11 +17,10 @@ test('Intern Blueprint', () => {
 
 // Test: getSchool() returns school
 test('Intern Blueprint: getSchool() returns school', () => {
-    const testSchool = "george-forman";
-    const test = new Intern("George Forman", 5435435, "george.foreman@mail.com", testSchool);
-    expect(test.getSchool()).toBe(testSchool);
+    const testschool = "george-forman";
+    const test = new Intern("George Forman", 5435435, "george.foreman@mail.com", testschool);
+    expect(test.getSchool()).toBe(testschool);
 });
-
 
 // Test: getRole() returns Intern
 test('Intern Blueprint: getRole() returns Intern', () => {
