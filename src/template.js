@@ -2,7 +2,7 @@
 
 // Cycle through each Array
 
-const generateHTML = pageContent => {
+const generateHTML = (managerArr, engineerArr, internArr) => {
     console.log("Passed arrays: " + managerArr, engineerArr, internArr)
 
     // Create the Manager HTML content based on user input using Manager class blueprint
