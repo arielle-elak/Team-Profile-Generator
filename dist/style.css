@@ -10,7 +10,7 @@ header {
     padding: 2rem;
     margin-bottom: 6vh;
 }
-
+.managerDiv,
 .managerCard,
 .teamCardGroup {
     justify-content: center;

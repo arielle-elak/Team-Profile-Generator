@@ -8,19 +8,20 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
     // Create the Manager HTML content based on user input using Manager class blueprint
     const createManager = manager => {
             console.log("createManager triggered");
-            return `
-            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
-                <div class="card teamCard">
+        return `
+            <div class="managerDiv col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="card managerCard">
                     <div class="card-header">
                         <h2>${manager.getName()}</h2>
                         <h3>${manager.getRole()}</h3>
                     </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: ${manager.getId()}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                        <li class="list-group-item">Office number: ${manager.getEmail()}</li>
-                    </ul>
+                    <div class="outerGroup">
+                        <ul class="list-group list-group-flush innerGroup">
+                            <li class="list-group-item">ID: ${manager.getId()}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                            <li class="list-group-item">Office number: ${manager.getEmail()}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
     `;
@@ -36,12 +37,13 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
                         <h2>${engineer.getName()}</h2>
                         <h3>${engineer.getRole()}</h3>
                     </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: ${engineer.getId()}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-                        <li class="list-group-item">GitHub Username: ${engineer.getGitHub()}</li>
-                    </ul>
+                    <div class="outerGroup">
+                        <ul class="list-group list-group-flush innerGroup">
+                            <li class="list-group-item">ID: ${engineer.getId()}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+                            <li class="list-group-item">GitHub Username: ${engineer.getGitHub()}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
     `;
@@ -58,12 +60,13 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
                         <h2>${intern.getName()}</h2>
                         <h3>${intern.getRole()}</h3>
                     </div>
-                <div class="outerGroup">
-                    <ul class="list-group list-group-flush innerGroup">
-                        <li class="list-group-item">ID: ${intern.getId()}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-                        <li class="list-group-item">School Name: ${intern.getSchool()}</li>
-                    </ul>
+                    <div class="outerGroup">
+                        <ul class="list-group list-group-flush innerGroup">
+                            <li class="list-group-item">ID: ${intern.getId()}</li>
+                            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+                            <li class="list-group-item">School Name: ${intern.getSchool()}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
     `;
@@ -72,27 +75,35 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
     // Create a new instance of each employee type for each entry in the array
     // Publish the final return of the generateHTML function which contains the innerContent
 
-        const innerContent = [];
+    const innerContent = [];
 
-
+    if (!managerArr) {
+        console.log("No manager found. Please start from the beginning.");
+        startApp();
+    } else {
         managerArr.forEach(manager => {
             innerContent.push(createManager(manager));
             console.log("Manager created from " + managerArr);
         });
+    };
 
-
+    if (!engineerArr) {
+        console.log("No Engineers Added");
+    } else {
         engineerArr.forEach(engineer => {
             innerContent.push(createEngineer(engineer));
             console.log("Engineer created from " + engineerArr);
         });
+    };
 
-
-
+    if (!internArr) {
+        console.log("No Interns Added");
+    } else {
         internArr.forEach(intern => {
             innerContent.push(createIntern(intern));
             console.log("Intern created from " + internArr);
         });
-
+    };
 
     return innerContent.join("");
 
@@ -114,13 +125,16 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
         <title>My Team</title>
     </head>
     <body>
+
         <header>
             <h1>My Team</h1>
         </header>
-        <section class="container-fluid row managerCard">
+
+        <section class="container-fluid row teamCardGroup">
             ${generateHTML(managerArr, engineerArr, internArr)}
         </section>
-        </body>
+
+    </body>
     </html>
         `;
     };
