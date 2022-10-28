@@ -129,7 +129,7 @@ const internPrompts = [
     {
         type: "input",
         name: "intName",
-        message: "ˁ(OᴥO)ˀ Intern\n-------------------\n\nWhat is the Intern's Full Name?",
+        message: "\n\nˁ(OᴥO)ˀ Intern\n-------------------\n\nWhat is the Intern's Full Name?",
         validate: async (input) => {
             if (!input) {
                 return 'Intern name cannot be blank.'
@@ -272,7 +272,8 @@ function startApp() {
 
                 fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
 
-                console.log("Your team is Complete! Please see the dist/ directory for your finished HTML file.");
+                console.log(
+                    "\n\n●▬▬▬▬๑۩۩๑▬▬▬▬▬●\n\nYour team is Complete!\nPlease see the dist/ directory for your finished HTML file.\nThank you again for using Team Generator!\n\n●▬▬▬▬๑۩۩๑▬▬▬▬▬●\n\n");
 
                 break;
         };
