@@ -1,6 +1,6 @@
 // Test for Intern object
 // Initiate test reference
-const Engineer = require("../lib/Intern");
+const Intern = require("../lib/Intern");
 
 // Test: Constructor contains name, id, email and school
 
