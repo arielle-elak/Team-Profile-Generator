@@ -9,8 +9,9 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
     const createManager = manager => {
             console.log("createManager triggered");
         return `
-            <div class="managerDiv col-12 col-sm-6 col-md-4 col-lg-4">
-                <div class="card managerCard">
+        <section class="row teamCardGroup">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="card teamCard">
                     <div class="card-header">
                         <h2>${manager.getName()}</h2>
                         <h3>${manager.getRole()}</h3>
@@ -19,11 +20,14 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
                         <ul class="list-group list-group-flush innerGroup">
                             <li class="list-group-item">ID: ${manager.getId()}</li>
                             <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                            <li class="list-group-item">Office number: ${manager.getEmail()}</li>
+                            <li class="list-group-item">Office Phone: ${manager.getOfficeNumber()}</li>
                         </ul>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <section class="row teamCardGroup">
     `;
     };
 
@@ -130,9 +134,13 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
             <h1>My Team</h1>
         </header>
 
-        <section class="container-fluid row teamCardGroup">
-            ${generateHTML(managerArr, engineerArr, internArr)}
-        </section>
+        <div class="container-fluid">
+
+
+                ${generateHTML(managerArr, engineerArr, internArr)}
+            </section>
+
+        </div>
 
     </body>
     </html>
