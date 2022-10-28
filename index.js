@@ -8,7 +8,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const generateHTML = require('./src/template')
+const generateHTML = require('./src/template');
 
 
 
@@ -179,12 +179,15 @@ function startApp() {
     function addMember(answers) {
         switch (answers.teamMember) {
             case "Add an Engineer":
+                console.log("Add an Engineer current arrays:\n" + managerArr, engineerArr, internArr)
                 addEngineer();
                 break;
             case "Add an Intern":
+                console.log("Add an Intern current arrays:\n" + managerArr, engineerArr, internArr)
                 addIntern();
                 break;
             case "Team is Complete":
+                console.log("At Team Complete: \n" + managerArr, engineerArr, internArr)
                 // Finish team and generate the HTML within the dist folder to the index.html file
                 if (!fs.existsSync(DIST_DIR)) {
                     fs.mkdirSync(DIST_DIR)
