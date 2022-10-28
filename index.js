@@ -24,7 +24,7 @@ const managerPrompts = [
     {
         type: "input",
         name: "managerName",
-        message: "What is the Team Manager's Full Name?",
+        message: "(ง︡'-'︠)ง Team Manager\n-------------------\n\nWhat is the Team Manager's Full Name?",
         validate: async (input) => {
             if (!input) {
                 return 'Manager name cannot be blank.'
@@ -77,7 +77,7 @@ const engineerPrompts = [
     {
         type: "input",
         name: "engName",
-        message: "What is the Engineer's Name?",
+        message: "\n\n└(￣◇￣)┐ Engineer\n-------------------\n\nWhat is the Engineer's Full Name?",
         validate: async (input) => {
             if (!input) {
                 return 'Engineer name cannot be blank.'
@@ -129,7 +129,7 @@ const internPrompts = [
     {
         type: "input",
         name: "intName",
-        message: "What is the Intern's Name?",
+        message: "ˁ(OᴥO)ˀ Intern\n-------------------\n\nWhat is the Intern's Full Name?",
         validate: async (input) => {
             if (!input) {
                 return 'Intern name cannot be blank.'
@@ -181,6 +181,10 @@ const internPrompts = [
 // Create new Manager object from Manager blueprint, taken from Employee master and push to manager array
 // Then call HTML generation function
 function startApp() {
+
+    console.log(
+        '\n¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>\n\nThank you for using the Team Generator.\nPlease follow the prompts and your final page will appear in index.html inside the /dist directory.\n\n¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸\n'
+      );
 
     inquirer.prompt(managerPrompts)
         .then((answers) => {
