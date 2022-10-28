@@ -23,21 +23,21 @@ test('Employee Blueprint: getName() returns name', () => {
 
 // Test: getId() returns id
 test('Employee Blueprint: getId() returns id', () => {
-    const id = 5435435;
-    const test = new Employee("George Forman", id);
-    expect(test.getId()).toBe(id);
+    const testid = 5435435;
+    const test = new Employee("George Forman", testid);
+    expect(test.getId()).toBe(testid);
 });
 
 // Test: getEmail() returns email
 test('Employee Blueprint: getEmail() returns email', () => {
-    const email = "george.foreman@mail.com";
-    const test = new Employee("George Forman", 5435435, email);
-    expect(test.getEmail()).toBe(email);
+    const testemail = "george.foreman@mail.com";
+    const test = new Employee("George Forman", 5435435, testemail);
+    expect(test.getEmail()).toBe(testemail);
 });
 
 // Test: getRole() returns "Employee"
 test('Employee Blueprint: getRole() returns Employee', () => {
-    const role = "Employee";
-    const test = new Employee(role);
-    expect(test.getRole).toBe(role);
+    const testrole = "Employee";
+    const test = new Employee("George Forman", 5435435, "george.foreman@mail.com");
+    expect(test.getRole()).toBe(testrole);
 });
