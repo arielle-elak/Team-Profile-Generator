@@ -10,7 +10,10 @@ const Intern = require('./lib/Intern');
 
 const generateHTML = require('./src/template');
 
-
+ // Arrays for capturing input during inquirer
+ const managerArr = [];
+ const engineerArr = [];
+ const internArr = [];
 
 // Constants for file writing
 const DIST_DIR = path.resolve(__dirname, 'dist');
@@ -104,11 +107,6 @@ const internPrompts = [
 // Then call HTML generation function
 function startApp() {
 
-    // Arrays for capturing input during inquirer
-    const managerArr = [];
-    const engineerArr = [];
-    const internArr = [];
-
     inquirer.prompt(managerPrompts)
         .then((answers) => {
             const manager = new Manager(
@@ -183,15 +181,15 @@ function startApp() {
                 addEngineer();
                 break;
             case "Add an Intern":
-                console.log("Add an Intern current arrays:\n" + managerArr, engineerArr, internArr)
+                console.log("Add an Intern current arrays:\n" + managerArr, engineerArr, internArr);
                 addIntern();
                 break;
             case "Team is Complete":
-                console.log("At Team Complete: \n" + managerArr, engineerArr, internArr)
+                console.log("At Team Complete: \n" + managerArr, engineerArr, internArr);
                 // Finish team and generate the HTML within the dist folder to the index.html file
                 if (!fs.existsSync(DIST_DIR)) {
                     fs.mkdirSync(DIST_DIR)
-                }
+                };
 
                 fs.writeFileSync(contents, generateHTML(managerArr, engineerArr, internArr), 'utf-8');
 

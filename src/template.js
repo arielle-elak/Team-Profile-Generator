@@ -100,7 +100,7 @@ const generateHTML = pageContent => {
 
 
     // Write the HTML content from the pageContent object
-    module.exports = pageContent => {
+    module.exports = (managerArr, engineerArr, internArr) => {
         return`<!--Team Profile Generator HTML-->
     <!DOCTYPE html>
     <html lang="en">
@@ -118,7 +118,7 @@ const generateHTML = pageContent => {
             <h1>My Team</h1>
         </header>
         <section class="container-fluid row managerCard">
-            ${generateHTML(pageContent)}
+            ${generateHTML(managerArr, engineerArr, internArr)}
         </section>
         </body>
     </html>
