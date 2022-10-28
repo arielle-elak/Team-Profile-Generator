@@ -22,6 +22,9 @@ Since this project is not deployed, once you have copied the repo, you will need
 
 
 ## Usage
+You will need to download or clone the following repository as this app is not deployed:
+[https://github.com/arielle-elak/Team-Profile-Generator](https://github.com/arielle-elak/Team-Profile-Generator)
+
 Please [Click Here](https://drive.google.com/file/d/1aqT-ucrwzuocxA-y4MnA_3VUpUhYfJ7m/view?usp=sharing) to see a demonstration of the functionality of this app.
 
 
