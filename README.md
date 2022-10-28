@@ -22,7 +22,8 @@ Since this project is not deployed, once you have copied the repo, you will need
 
 
 ## Usage
-Please see the video below for a demonstration of the functionality of this app:
+Please [Click Here](https://drive.google.com/file/d/1aqT-ucrwzuocxA-y4MnA_3VUpUhYfJ7m/view?usp=sharing) to see a demonstration of the functionality of this app.
+
 
 ### Validation and Styling
 ![image](https://user-images.githubusercontent.com/73449635/198507411-d6c603e1-880c-4eeb-8825-cdd270c40880.png)
