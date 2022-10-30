@@ -45,7 +45,7 @@ const generateHTML = (managerArr, engineerArr, internArr) => {
                         <ul class="list-group list-group-flush innerGroup">
                             <li class="list-group-item">ID: ${engineer.getId()}</li>
                             <li class="list-group-item">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></li>
-                            <li class="list-group-item">GitHub Username: ${engineer.getGitHub()}</li>
+                            <li class="list-group-item">GitHub Username: <a href="https://github.com/${engineer.getGitHub()}/">${engineer.getGitHub()}</a></li>
                         </ul>
                     </div>
                 </div>
